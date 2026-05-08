@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioSeqAnalyzer - DNA & RNA Sequence Analysis</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧬 BioSeqAnalyzer</h1>
+            <p class="subtitle">DNA & RNA Sequence Analysis Pipeline</p>
+        </header>
+
+        <main>
+            <!-- Step 1: Sequence Input -->
+            <section class="step step-1">
+                <h2>Step 1: Input Your Sequence</h2>
+                <div class="input-methods">
+                    <div class="method">
+                        <h3>Method 1: Paste Sequence</h3>
+                        <textarea id="sequenceInput" placeholder="Paste your DNA or RNA sequence here (e.g., ATCGATCG or AUCGAUCG)..." rows="6"></textarea>
+                    </div>
+                    
+                    <div class="method">
+                        <h3>Method 2: Upload File</h3>
+                        <input type="file" id="fileInput" accept=".txt,.fasta,.fa,.seq" />
+                        <small>Supported: .txt, .fasta, .fa, .seq</small>
+                    </div>
+
+                    <div class="method drag-drop-zone" id="dragDropZone">
+                        <h3>Method 3: Drag & Drop</h3>
+                        <p>Drag and drop a sequence file here</p>
+                    </div>
+                </div>
+                <button id="analyzeBtn" class="btn btn-primary">Analyze Sequence</button>
+            </section>
+
+            <!-- Step 2: Sequence Detection -->
+            <section class="step step-2" id="step2" style="display: none;">
+                <h2>Step 2: Sequence Detection</h2>
+                <div class="result-box" id="detectionResult">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Step 3: DNA Strand Type Selection (conditional) -->
+            <section class="step step-3" id="step3" style="display: none;">
+                <h2>Step 3: DNA Strand Type</h2>
+                <p class="info">Which strand type is your DNA sequence?</p>
+                <div class="strand-selection">
+                    <label class="radio-group">
+                        <input type="radio" name="strandType" value="coding" />
+                        <span>Non-template Strand (Coding/Sense Strand)</span>
+                    </label>
+                    <label class="radio-group">
+                        <input type="radio" name="strandType" value="template" />
+                        <span>Template Strand (Antisense Strand)</span>
+                    </label>
+                </div>
+                <button id="proceedTranscriptionBtn" class="btn btn-primary">Proceed to Transcription</button>
+            </section>
+
+            <!-- Step 4: Transcription -->
+            <section class="step step-4" id="step4" style="display: none;">
+                <h2>Step 4: Transcription</h2>
+                <div class="result-box" id="transcriptionResult">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Step 5: Translation -->
+            <section class="step step-5" id="step5" style="display: none;">
+                <h2>Step 5: Translation (Codons to Amino Acids)</h2>
+                <div class="result-box" id="translationResult">
+                    <!-- Populated by JavaScript -->
+                </div>
+                <div id="codonTable" class="codon-table"></div>
+            </section>
+
+            <!-- Step 6: Amino Acids -->
+            <section class="step step-6" id="step6" style="display: none;">
+                <h2>Step 6: Polypeptide Chain (Amino Acids)</h2>
+                <div class="result-box" id="aminoAcidsResult">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Step 7: Protein & Database Lookup -->
+            <section class="step step-7" id="step7" style="display: none;">
+                <h2>Step 7: Protein Characterization & Database Lookup</h2>
+                <div class="result-box" id="proteinResult">
+                    <!-- Populated by JavaScript -->
+                </div>
+                <div id="databaseResults" class="database-results"></div>
+            </section>
+
+            <!-- Error Display -->
+            <section id="errorSection" class="error-box" style="display: none;">
+                <h3>Error</h3>
+                <p id="errorMessage"></p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>CSC 442 - Computational Biology | BioSeqAnalyzer Project 2</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
