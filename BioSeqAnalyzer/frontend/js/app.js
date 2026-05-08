@@ -1,7 +1,7 @@
 // BioSeqAnalyzer - Frontend Application
 // DNA & RNA Sequence Analysis
 
-const API_BASE_URL = 'https://bioseqanalyzer-q02a.onrender.com/api';
+const API_BASE_URL = '/api';
 
 let currentAnalysisState = {
     sequence: '',

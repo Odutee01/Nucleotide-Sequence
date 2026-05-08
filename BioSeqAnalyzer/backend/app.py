@@ -3,16 +3,22 @@ BioSeqAnalyzer - Backend Flask Application
 DNA & RNA Sequence Analysis Pipeline
 """
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import json
+import os
 from sequence_analyzer import SequenceAnalyzer
 from transcription import Transcriber
 from translation import Translator
 from protein_lookup import ProteinLookup
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend', static_url_path='')
 CORS(app)  # Enable CORS for frontend
+
+@app.route('/')
+def index():
+    """Serve the frontend index.html"""
+    return send_from_directory(app.static_folder, 'index.html')
 
 # Initialize analysis modules
 analyzer = SequenceAnalyzer()
@@ -130,7 +136,7 @@ def health_check():
 
 
 if __name__ == '__main__':
-    print("🧬 BioSeqAnalyzer Backend Starting...")
-    print("Flask API running on http://localhost:5000")
-    print("API Base: http://localhost:5000/api")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("BioSeqAnalyzer Backend Starting...")
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Flask API running on http://localhost:{port}")
+    app.run(debug=True, host='0.0.0.0', port=port)
